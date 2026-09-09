@@ -321,9 +321,11 @@
       devices:
         - id: "pro-max"
           name: "iPhone 17 Pro Max"
+          deprecated: true
           variants: ["a19-pro-6-6", "c1x", "n1", "u2"]
         - id: "pro"
           name: "iPhone 17 Pro"
+          deprecated: true
           variants: ["a19-pro-6-6", "c1x", "n1", "u2"]
         - id: "base"
           name: "iPhone 17"
@@ -344,6 +346,7 @@
           variants: ["a18-pro-6-6", "u2"]
         - id: "plus"
           name: "iPhone 16 Plus"
+          deprecated: true
           variants: ["a18-6-5", "u2"]
         - id: "base"
           name: "iPhone 16"
@@ -529,6 +532,7 @@
           variants: ["s11", "u2"]
         - id: "11"
           name: "Apple Watch Series 11"
+          deprecated: true
           variants: ["s10", "w3", "u2"]
         - id: "10"
           name: "Apple Watch Series 10"
@@ -582,6 +586,7 @@
           variants: ["s11", "u2"]
         - id: "3"
           name: "Apple Watch Ultra 3"
+          deprecated: true
           variants: ["s10", "w3", "u2"]
         - id: "2"
           name: "Apple Watch Ultra 2"
@@ -617,6 +622,7 @@
           variants: ["h2"]
         - id: "4"
           name: "AirPods 4"
+          deprecated: true
           variants: ["h2"]
         - id: "3"
           name: "AirPods (3rd gen)"
@@ -632,6 +638,7 @@
           variants: ["w1"]
     - id: "with-active-noise-cancellation"
       name: "AirPods with Active Noise Cancellation"
+      deprecated: true
       devices:
         - id: "4"
           name: "AirPods 4 with Active Noise Cancellation"
