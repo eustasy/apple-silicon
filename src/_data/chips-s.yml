@@ -1,3 +1,10 @@
+- id: s11
+  name: "S11"
+  specs:
+    cpu_cores: 2
+    npu_cores: 4
+    release_date: "2026-09-18"
+
 - id: s10
   name: "S10"
   specs:

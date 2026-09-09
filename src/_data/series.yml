@@ -415,7 +415,7 @@
   ranks:
     - id: s11
       name: "S11"
-      description: "SiP with 64-bit dual-core CPU and 4-core Neural Engine, adding on-device Audio Intelligence, used in Apple Watch Series 12"
+      description: "SiP with 64-bit dual-core CPU and 4-core Neural Engine, adding on-device Audio Intelligence, used in Apple Watch Series 12 and Ultra 4"
       variants: ["s11"]
     - id: s10
       name: "S10"

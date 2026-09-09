@@ -577,6 +577,9 @@
     - id: "ultra"
       name: "Apple Watch Ultra"
       devices:
+        - id: "4"
+          name: "Apple Watch Ultra 4"
+          variants: ["s11", "u2"]
         - id: "3"
           name: "Apple Watch Ultra 3"
           variants: ["s10", "w3", "u2"]
