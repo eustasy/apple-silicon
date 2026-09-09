@@ -1,3 +1,17 @@
+- id: a20-pro-6-7
+  name: "A20 Pro"
+  specs:
+    cpu_cores: 6
+    super_cores: 2
+    efficiency_cores: 4
+    gpu_vendor: "Apple"
+    gpu_cores: 7
+    gpu_rt: true
+    npu_cores: 32
+    hardware_acceleration: ["H264", "HEVC", "ProRes", "ProRes RAW"]
+    prores_engines: 1
+    av1_decode: 1
+    release_date: "2026-09-18"
 - id: a19-pro-6-6
   name: "A19 Pro"
   specs:

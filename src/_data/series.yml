@@ -166,6 +166,10 @@
   name: "A Series"
   description: "Apple silicon for iPhones and iPads"
   ranks:
+    - id: a20-pro
+      name: "A20 Pro"
+      description: "Pro-tier member of the A20 family, with a three-tier CPU and a dual Neural Engine, used in iPhone 18 Pro, Pro Max, and iPhone Duo"
+      variants: ["a20-pro-6-7"]
     - id: a19-pro
       name: "A19 Pro"
       description: "Pro-tier member of the A19 family, used in iPhone 17 Pro, Pro Max, and iPhone Air"
@@ -363,6 +367,10 @@
   name: "C Series"
   description: "Apple cellular modem chips for iPhone and iPad"
   ranks:
+    - id: c2
+      name: "C2"
+      description: "Second-generation Apple cellular modem, used in iPhone 18 Pro and iPhone Duo"
+      variants: ["c2"]
     - id: c1-x
       name: "C1X"
       description: "Faster variant of C1 with twice the speed, used in iPhone Air and M5 iPad Pro"
@@ -405,9 +413,13 @@
   name: "S Series"
   description: "Apple silicon Systems in Package for Apple Watch and HomePod"
   ranks:
+    - id: s11
+      name: "S11"
+      description: "SiP with 64-bit dual-core CPU and 4-core Neural Engine, adding on-device Audio Intelligence, used in Apple Watch Series 12"
+      variants: ["s11"]
     - id: s10
       name: "S10"
-      description: "Latest generation SiP with dual-core Sawtooth CPU, used in Apple Watch Series 10, Series 11, SE 3, and Ultra 3"
+      description: "SiP with dual-core Sawtooth CPU, used in Apple Watch Series 10, Series 11, SE 3, and Ultra 3"
       process_nm: "TSMC N4"
       cpu_isa: "ARMv8.6-A"
       variants: ["s10"]

@@ -295,6 +295,27 @@
   name: "iPhone"
   description: "Apple silicon for iPhones"
   groups:
+    - id: "duo"
+      name: "iPhone Duo"
+      devices:
+        - id: "base"
+          name: "iPhone Duo"
+          variants: ["a20-pro-6-7", "c2", "n1", "u2"]
+    - id: "18"
+      name: "iPhone 18"
+      devices:
+        - id: "pro-max"
+          name: "iPhone 18 Pro Max"
+          variants: ["a20-pro-6-7", "n1", "u2"]
+        - id: "pro"
+          name: "iPhone 18 Pro"
+          variants: ["a20-pro-6-7", "c2", "n1", "u2"]
+    - id: "air"
+      name: "iPhone Air"
+      devices:
+        - id: "base"
+          name: "iPhone Air"
+          variants: ["a19-pro-6-5", "c1x", "n1", "u2"]
     - id: "17"
       name: "iPhone 17"
       devices:
@@ -304,9 +325,6 @@
         - id: "pro"
           name: "iPhone 17 Pro"
           variants: ["a19-pro-6-6", "c1x", "n1", "u2"]
-        - id: "air"
-          name: "iPhone 17 Air"
-          variants: ["a19-pro-6-5", "c1x", "n1", "u2"]
         - id: "base"
           name: "iPhone 17"
           variants: ["a19-6-5", "c1x", "n1", "u2"]
@@ -506,6 +524,9 @@
     - id: "series"
       name: "Apple Watch Series"
       devices:
+        - id: "12"
+          name: "Apple Watch Series 12"
+          variants: ["s11", "u2"]
         - id: "11"
           name: "Apple Watch Series 11"
           variants: ["s10", "w3", "u2"]
