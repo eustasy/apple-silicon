@@ -612,6 +612,9 @@
     - id: "base"
       name: "AirPods"
       devices:
+        - id: "5"
+          name: "AirPods 5"
+          variants: ["h2"]
         - id: "4"
           name: "AirPods 4"
           variants: ["h2"]

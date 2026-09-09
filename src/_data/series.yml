@@ -387,7 +387,7 @@
   ranks:
     - id: h2
       name: "H2"
-      description: "Bluetooth 5.3 audio SoC with hardware noise reduction, used in AirPods 4, AirPods Pro 2/3, and Apple Vision Pro"
+      description: "Bluetooth 5.3 audio SoC with hardware noise reduction, used in AirPods 4/5, AirPods Pro 2/3, AirPods Max 2, and Apple Vision Pro"
       variants: ["h2"]
     - id: h1
       name: "H1"
