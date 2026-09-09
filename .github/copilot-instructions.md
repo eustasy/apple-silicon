@@ -23,6 +23,7 @@ This project is an Eleventy (11ty) static site using Nunjucks templates and YAML
   - `specs` (object keyed by the `key` values declared in `specs.yml`)
 - Series live in `src/_data/series.yml` and reference chips by `id` under `ranks[*].variants`.
 - Device categories live in `src/_data/devices.yml` and reference chips by `id` under `devices[*].variants`.
+- News posts are Markdown in `src/news/posts/`, not YAML. Shared front matter (layout, tag, permalink) lives in `src/news/posts/posts.11tydata.js`, so each post carries only `title`, `date`, `summary` and `categories`.
 
 ### Build-time behavior
 
@@ -39,6 +40,7 @@ This project is an Eleventy (11ty) static site using Nunjucks templates and YAML
 | `chipPagesCollection`        | `chips-*.yml` + devices + series   | All chips enriched with `groupedSpecs`, `devices` list, `rank` info, `url`, `hasOwnPage`                                |
 | `chipVariantPagesCollection` | `chipPagesCollection` filtered     | Only chips with `hasOwnPage` — the ones that get their own variant page                                                 |
 | `generationPagesCollection`  | `series.yml` + `chips-*.yml`       | One entry per generation with merged tier specs, `allVariants`, `tiers` (links to each tier page), `onSale`             |
+| `newsPosts`                  | `src/news/posts/*.md`              | Every post tagged `post`, sorted newest first. Give same-day posts a time to order them; otherwise filename decides     |
 
 Each chip is enriched with `groupedSpecs` computed from `specs.yml`. Templates read from `groupedSpecs` — don't recompute in templates.
 
@@ -74,6 +76,8 @@ Not every chip gets a variant page. A chip whose id has no `<cpu>-<gpu>` suffix 
 | `/compare/video-editing/`               | `compare/video-editing.njk` | (static page)                |
 | `/gen-gains/m-series/`                  | `gen-gains/m-series.njk`    | (static page, Chart.js)      |
 | `/gen-gains/a-series/`                  | `gen-gains/a-series.njk`    | (static page, Chart.js)      |
+| `/news/`, `/news/page/<n>/`             | `news/index.njk`            | `newsPosts` (20 per page)    |
+| `/news/<slug>/`                         | `_layouts/post.njk`         | `newsPosts`                  |
 | `/api/search.json`                      | `api/search.njk`            | (search index)               |
 | `/api/chips.json`                       | `api/chips.njk`             | (full chip data)             |
 | `/sitemap.xml`, `/robots.txt`           | `sitemap.njk`, `robots.njk` | (generated)                  |
@@ -90,6 +94,7 @@ For grouped device categories (iPhone, iPad, Watch, AirPods), devices nest under
 - `getCurrentChips(categoryId, sectionOrGroupId?)` — returns current-gen primary chip IDs for non-deprecated devices in a category. Pass a `section` ID for Mac (`"laptop"` / `"desktop"`), a `group` ID for grouped categories, or omit for all. Historical variants are excluded — only the newest generation per device is returned.
 - `groupCompanionsBySeries(ids)` — groups companion (non-primary) chip IDs by series for the companion-chip section on device pages.
 - `getCurrentDevices(categoryId, sectionOrGroupId?)` — same filtering as `getCurrentChips`, but returns device objects `{id, name, variants, categoryId, categoryName, url}` suitable for passing to `deviceGrid`. The `variants` field is trimmed to current-gen primary chips.
+- `relatedPosts(collections, pageIds, limit?)` — posts whose `categories` are an ancestor or descendant of this page's id, e.g. an `m5-max` page matches a post filed under `m5`. Returns `[]` for an unknown id, so hardware pages can call it unconditionally.
 
 ### Filters (Nunjucks)
 
@@ -100,6 +105,8 @@ For grouped device categories (iPhone, iPad, Watch, AirPods), devices nest under
 - `familyLabel` — family label from a rank/chip id (`"m5-ultra"` → `"M5"`, `"c1-x"` → `"C1"`, `"a16"` → `"A16"`). Derived from the generation id, so the label can't drift from the family URL it links to. Prefer this over string-stripping tier words off a name.
 - `companionChips` — inverse of `primaryChips`: keeps only the non-primary companion chips (C, N, R, T, U, W).
 - `map` — maps an array by a property name. Note Nunjucks has **no** Jinja-style `map(attribute=…)`; collect values with an explicit loop.
+- `resolveCategories` — turns a post's `categories` ids into `{label, url}` links. An id that names no real hardware is dropped with a `[news] unknown category id` warning rather than linked to a 404, so watch the build output after writing a post.
+- `postDate` / `isoDate` — a post date as `9 September 2026` (en-GB, UTC) and as `2026-09-09` for `datetime` attributes.
 - `primaryChips(ids, referenceIds?)` — filters a list of chip IDs to keep only "primary" SoCs (A, M, S series). When H-series chips are present and no A/M/S chips exist, H is promoted to primary. All other series (R, U, W, T, N, C) are tertiary and filtered out. Used to derive what shows in tables, cards, and headings on device pages.
 
 ### Macros
@@ -132,6 +139,11 @@ For grouped device categories (iPhone, iPad, Watch, AirPods), devices nest under
   - Usage: `{{ genNav(prevGenTier, nextGenTier, siblingTiers) }}`
   - Renders previous/next generation links and same-generation sibling tier links. Used on rank pages.
   - Takes an optional 4th argument to relabel the links row: generation pages pass `gen.tiers` with `"Tiers:"` to link down to their tier pages.
+- **Post list**: `src/_includes/macros/post-list.njk`
+  - Import: `{% from "macros/post-list.njk" import postSnippets, postCategories, relatedPostList %}`
+  - `postSnippets(posts)` renders date/title/summary cards — the homepage passes the newest 3, `/news/` passes a page of 20.
+  - `postCategories(categories | resolveCategories)` renders the "Covers" footer on a post.
+  - `relatedPostList(posts, heading)` renders nothing when `posts` is empty, so hardware pages can call it unconditionally.
 - **Breadcrumbs**: `src/_includes/macros/breadcrumbs.njk`
   - Import: `{% from "macros/breadcrumbs.njk" import breadcrumbs %}`
   - Usage: `{{ breadcrumbs([{ label: "Mac", url: "/devices/mac/" }, { label: "MacBook Air 13″" }]) }}`
@@ -159,6 +171,8 @@ For grouped device categories (iPhone, iPad, Watch, AirPods), devices nest under
 - `src/current/watches.njk` — current Apple Watch lineup
 - `src/current/airpods.njk` — current AirPods lineup
 - `src/gen-gains/m-series.njk`, `src/gen-gains/a-series.njk` — generational-gains charts (Chart.js; data in `assets/gen-gains-*.js`, not YAML)
+- `src/news/index.njk` — `/news/`, paginated 20 posts per page
+- `src/_layouts/post.njk` — a single post, with breadcrumbs, date and the "Covers" category footer
 - `src/api/search.njk` — the search index, `src/api/chips.njk` — full chip JSON
 - `src/_layouts/base.njk` — also renders the footer site map, generated from `devicesCollection`, `seriesCollection` and `generationPagesCollection`
 
@@ -220,17 +234,46 @@ When adding chip data from Wikipedia's comparison tables:
 4. **Handle variants**: Create separate chip entries for each GPU/CPU configuration (e.g., M3 has 8-core and 10-core GPU variants)
 5. **Order correctly**: Insert chips in the proper order (see "Chip ordering" above)
 
+### News posts
+
+Posts live in `src/news/posts/<slug>.md` and publish at `/news/<slug>/`. Front matter is only:
+
+```yaml
+---
+title: "Mac mini and Mac Studio get M6, M5 Pro, M5 Max and M5 Ultra"
+date: 2026-08-25
+summary: "One or two sentences with real numbers. Doubles as the meta description."
+categories: ["m6", "m6-12-12", "mac/mac-mini"]
+---
+```
+
+- `date` is the announcement date, not the on-sale date. `YYYY-MM-DD` on its own is the norm; add a time (`2026-09-09 12:00:00`) when several posts share a day, since ordering otherwise falls back to filename. Times are ordering metadata only — `postDate` renders in UTC and never shows them.
+- `categories` are ids from the category index: a series (`m`), generation (`m5`), rank (`m5-max`), chip variant (`m5-max-18-40`), device category (`iphone`), group (`iphone/17`) or device (`iphone/17/e`, `mac/mac-mini`). They power the "Covers" footer and `relatedPosts` on hardware pages, so list every chip and device the post is actually about. A bad id only warns — check the build output for `[news] unknown category id`.
+- The homepage shows the newest 3 via `postSnippets`; `/news/` paginates the rest.
+
+House style, derived from the existing posts — match it:
+
+- **The headline names the product and what it got**, e.g. "Mac mini and Mac Studio get M6, M5 Pro, M5 Max and M5 Ultra", "iPhone 17e launches with a new A19 variant", "Mac Pro discontinued; AirPods Max 2 arrives with H2". Not a headline about an analytical finding — the finding goes in the body.
+- Open with the product, linked, and its release date. Details, comparisons and interpretation follow.
+- **Link every chip, device and related post on first mention**, using `chip.url`-shaped paths: `/chips/m5/max/18-40/`, `/devices/mac/mac-mini/`, `/news/<slug>/`. Posts cross-link each other freely when one follows on from another.
+- Use a Markdown comparison table when comparing two or more chips, with the variant linked in the first column and `18c CPU / 40c GPU` core notation in prose.
+- Bold the one sharp fact per section (**36 GB, take it or leave it**), not whole paragraphs.
+- Use `###` subheads once a post covers more than one product or theme; short posts don't need them.
+- Close with what the release displaces: which models are discontinued, what a chip replaces, or what is left on older silicon.
+- Every number must come from `src/_data/` or the source spec sheet. Check claims like "first" or "only" against the YAML before writing them.
+
 ### Search index
 
 `src/api/search.njk` builds `/api/search.json`; `assets/search.js` consumes it. Every page on the site is indexed except device category and group pages.
 
 - Entry shape: `{type, id, name, detail, url}` plus `weight` (devices and standalone pages) and `keywords`/`discontinued` (devices only).
-- `type` is one of `family`, `tier`, `chip`, `series`, `device`, `page` — it selects the result icon and the ranking boost.
+- `type` is one of `family`, `tier`, `chip`, `series`, `device`, `news`, `page` — it selects the result icon (`assets/search.js`) and the ranking boost.
 - Values are emitted with `| dump | safe`, **not** as HTML-escaped text. This is a JSON API and the client escapes for HTML itself; interpolating normally double-encodes apostrophes into `&#39;`.
 - **Entry order is load-bearing.** `search.js` sorts by score with a stable sort, so ties fall back to file order. Emit broadest first: family → tier → variant → series → device → page.
 - Devices carry `keywords` (the chip family names inside them) so a query like `m5` matches the Macs that ship one. Nothing else would match them.
 - Ranking = match score (3 name-prefix / 2 name-contains / 1 other) + 0.1 for silicon types + the entry's `weight` (product line, minus 0.8 if discontinued).
 - Skip a rank page only when its sole chip has no variant page of its own — otherwise the rank URL goes unindexed.
+- News posts are indexed as `type: "news"` with `detail` set to the formatted date and `keywords` built from the summary plus each resolved category label — so "mac studio" finds a post that never says it in the title. They carry a negative weight so hardware outranks coverage of it.
 
 ### Common tasks
 
@@ -239,6 +282,10 @@ When adding chip data from Wikipedia's comparison tables:
   2. Add the `id` to the correct series `ranks[*].variants` in `series.yml`.
   3. If the chip is used in any device, add its `id` to `devices[*].variants` in `devices.yml`.
   4. Build and verify the comparison table.
+- Add a news post:
+  1. Create `src/news/posts/<slug>.md` with `title`, `date`, `summary`, `categories` — nothing else; the rest comes from `posts.11tydata.js`.
+  2. Write it to the house style above, linking every chip and device mentioned.
+  3. Build and check for `[news] unknown category id` warnings, then confirm it appears on `/` and `/news/`.
 - Add a new field:
   1. Add to `specs.yml` with `key` + `label` in the right group.
   2. Populate `specs` for relevant chips. Missing values are fine.
@@ -290,6 +337,7 @@ When making structural changes to the project, update `.github/copilot-instructi
 - **New URL pattern or template added** → add a row to the URL structure table and a line under "Page templates".
 - **New YAML convention introduced** (e.g. a new top-level field on devices) → document under "Device data conventions" or "Specs conventions".
 - **New page type added** → also index it in `src/api/search.njk` and `src/sitemap.njk`, and link it from the footer site map in `base.njk`.
+- **News writing conventions change** → update "News posts" so the house style stays the one source for it.
 - **Common task changes** → update the relevant step in "Common tasks".
 
 Keep descriptions short and grounded in actual code — the instructions are a quick reference, not prose documentation.
