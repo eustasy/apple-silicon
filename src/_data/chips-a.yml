@@ -11,6 +11,10 @@
     hardware_acceleration: ["H264", "HEVC", "ProRes", "ProRes RAW"]
     prores_engines: 1
     av1_decode: 1
+    memory_bus_width_bits: 96
+    memory_type: "LPDDR5X-9600"
+    memory_bandwidth_gb_s: 115.2
+    process_nm: 2
     release_date: "2026-09-18"
 - id: a19-pro-6-6
   name: "A19 Pro"
