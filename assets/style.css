@@ -711,12 +711,31 @@ li {
   opacity: 1;
 }
 
+.home-grid--stacked {
+  grid-template-columns: 1fr;
+}
+
 @media (max-width: 720px) {
   .home-grid--featured {
     grid-template-columns: repeat(2, 1fr);
   }
   .home-grid--wide {
     grid-template-columns: 1fr;
+  }
+}
+
+/* Side-by-side sections; a lone section (no news yet) takes the full width */
+.home-split {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 960px) {
+  .home-split {
+    grid-auto-flow: row;
+    gap: 0;
   }
 }
 
