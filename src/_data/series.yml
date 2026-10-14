@@ -180,7 +180,7 @@
       variants: ["a19-pro-6-6", "a19-pro-6-5"]
     - id: a19
       name: "A19"
-      description: "Base-tier member of the A19 family, used in iPhone 17"
+      description: "Base-tier member of the A19 family, used in iPhone 17 and Apple TV 4K (4th generation)"
       codename: "Tilos"
       part_number: "T8150a"
       process_nm: "TSMC N3P"
@@ -196,7 +196,7 @@
       variants: ["a18-pro-6-6", "a18-pro-6-5"]
     - id: a18
       name: "A18"
-      description: "Base-tier member of the A18 family"
+      description: "Base-tier member of the A18 family, used in iPhone 16, 16 Plus, 16e, and Apple HomeView"
       codename: "Tupai"
       process_nm: "TSMC N3E"
       cpu_isa: "ARMv9.2-A"
@@ -399,7 +399,7 @@
   ranks:
     - id: n1
       name: "N1"
-      description: "Wi-Fi 7, Bluetooth 6, and Thread chip for the iPhone 17 series, M5 iPad Pro, and current Macs"
+      description: "Wi-Fi 7, Bluetooth 6, and Thread chip for the iPhone 17 series, M5 iPad Pro, current Macs, and Apple TV 4K"
       variants: ["n1"]
 - id: R
   name: "R Series"
@@ -419,7 +419,7 @@
       variants: ["s11"]
     - id: s10
       name: "S10"
-      description: "SiP with dual-core Sawtooth CPU, used in Apple Watch Series 10, Series 11, SE 3, and Ultra 3"
+      description: "SiP with dual-core Sawtooth CPU, used in Apple Watch Series 10, Series 11, SE 3, Ultra 3, and HomePod mini 2"
       process_nm: "TSMC N4"
       cpu_isa: "ARMv8.6-A"
       variants: ["s10"]
@@ -504,7 +504,7 @@
       variants: ["u2"]
     - id: u1
       name: "U1"
-      description: "First-generation Ultra Wideband chip, used in iPhone 11 through 14, Apple Watch Series 6-8, AirTag 1st gen, HomePod Mini"
+      description: "First-generation Ultra Wideband chip, used in iPhone 11 through 14, Apple Watch Series 6-8, AirTag 1st gen, HomePod mini and HomePod mini 2"
       variants: ["u1"]
 - id: W
   name: "W Series"

@@ -691,6 +691,9 @@
     - id: "mini"
       name: "HomePod mini"
       devices:
+        - id: "2"
+          name: "HomePod mini 2"
+          variants: ["s10", "u1"]
         - id: "1"
           name: "HomePod mini"
           variants: ["s5", "u1"]
@@ -701,6 +704,9 @@
     - id: "4k"
       name: "Apple TV 4K"
       devices:
+        - id: "4"
+          name: "Apple TV 4K (4th generation)"
+          variants: ["a19-6-5", "n1"]
         - id: "3"
           name: "Apple TV 4K (3rd generation)"
           variants: ["a15-6-5"]
@@ -732,6 +738,16 @@
         - id: "1"
           name: "Apple TV (1st generation)"
           variants: []
+- id: "homeview"
+  name: "Apple HomeView"
+  description: "Apple silicon for Apple HomeView smart home displays"
+  devices:
+    - id: "apple-homeview"
+      name: "Apple HomeView"
+      variants: ["a18-6-5"]
+    - id: "apple-homeview-wall-mounted"
+      name: "Apple HomeView (Wall Mounted)"
+      variants: ["a18-6-5"]
 - id: "display"
   name: "Display"
   description: "Apple silicon for Apple displays"
