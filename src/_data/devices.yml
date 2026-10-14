@@ -696,6 +696,7 @@
           variants: ["s10", "u1"]
         - id: "1"
           name: "HomePod mini"
+          deprecated: true
           variants: ["s5", "u1"]
 - id: "apple-tv"
   name: "Apple TV"
@@ -709,6 +710,7 @@
           variants: ["a19-6-5", "n1"]
         - id: "3"
           name: "Apple TV 4K (3rd generation)"
+          deprecated: true
           variants: ["a15-6-5"]
         - id: "2"
           name: "Apple TV 4K (2nd generation)"
