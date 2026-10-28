@@ -16,6 +16,20 @@
     memory_bandwidth_gb_s: 115.2
     process_nm: 2
     release_date: "2026-09-18"
+- id: a20-pro-5-7
+  name: "A20 Pro"
+  specs:
+    cpu_cores: 5
+    super_cores: 2
+    efficiency_cores: 3
+    gpu_vendor: "Apple"
+    gpu_cores: 7
+    gpu_rt: true
+    npu_cores: 16
+    hardware_acceleration: ["H264", "HEVC", "ProRes"]
+    av1_decode: 1
+    process_nm: 2
+    release_date: "2026-11-06"
 - id: a19-pro-6-6
   name: "A19 Pro"
   specs:

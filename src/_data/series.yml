@@ -168,8 +168,8 @@
   ranks:
     - id: a20-pro
       name: "A20 Pro"
-      description: "Pro-tier member of the A20 family, with a three-tier CPU and a dual Neural Engine, used in iPhone 18 Pro, Pro Max, and iPhone Duo"
-      variants: ["a20-pro-6-7"]
+      description: "Pro-tier member of the A20 family, with super and efficiency CPU cores and up to a dual Neural Engine, used in iPhone 18 Pro, Pro Max, iPhone Duo, and iPad mini (A20 Pro)"
+      variants: ["a20-pro-6-7", "a20-pro-5-7"]
     - id: a19-pro
       name: "A19 Pro"
       description: "Pro-tier member of the A19 family, used in iPhone 17 Pro, Pro Max, and iPhone Air"
@@ -369,7 +369,7 @@
   ranks:
     - id: c2
       name: "C2"
-      description: "Second-generation Apple cellular modem, used in iPhone 18 Pro and iPhone Duo"
+      description: "Second-generation Apple cellular modem, used in iPhone 18 Pro, iPhone Duo, and iPad mini (A20 Pro)"
       variants: ["c2"]
     - id: c1-x
       name: "C1X"
@@ -399,7 +399,7 @@
   ranks:
     - id: n1
       name: "N1"
-      description: "Wi-Fi 7, Bluetooth 6, and Thread chip for the iPhone 17 series, M5 iPad Pro, current Macs, and Apple TV 4K"
+      description: "Wi-Fi 7, Bluetooth 6, and Thread chip for the iPhone 17 series, M5 iPad Pro, iPad mini, current Macs, and Apple TV 4K"
       variants: ["n1"]
 - id: R
   name: "R Series"
