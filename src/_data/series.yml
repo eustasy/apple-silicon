@@ -6,7 +6,7 @@
       name: "M6"
       description: "The latest generation of Apple silicon for Macs, with a three-tier CPU and a dual Neural Engine."
       process_nm: "TSMC N2"
-      variants: ["m6-12-12"]
+      variants: ["m6-12-12", "m6-10-10"]
     - id: m5-ultra
       name: "M5 Ultra"
       description: "Top-tier member of the M5 family, two M5 Max dies joined by UltraFusion"

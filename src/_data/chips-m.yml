@@ -24,6 +24,32 @@
     memory_options: [16, 24, 32]
     process_nm: 2
     release_date: "2026-09-22"
+- id: m6-10-10
+  name: "M6"
+  specs:
+    cpu_cores: 10
+    super_cores: 2
+    performance_cores: 3
+    efficiency_cores: 5
+    gpu_vendor: "10th-gen Apple"
+    gpu_cores: 10
+    gpu_eus: 160
+    gpu_alus: 1280
+    gpu_rt: true
+    npu_cores: 32
+    hardware_acceleration: ["H264", "HEVC", "ProRes", "ProRes RAW"]
+    video_decode: 1
+    video_encode: 1
+    prores_engines: 1
+    av1_decode: 1
+    memory_bus_width_bits: 128
+    memory_channels: 8
+    memory_channel_width_bits: 16
+    memory_type: "LPDDR5X-10667"
+    memory_bandwidth_gb_s: 170.7 # 16 GB configs are limited to 153 GB/s
+    memory_options: [16, 24]
+    process_nm: 2
+    release_date: "2026-11-06"
 - id: m5-ultra-36-80
   name: "M5 Ultra"
   specs:

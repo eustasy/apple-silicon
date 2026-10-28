@@ -110,7 +110,17 @@
     - id: "imac"
       name: "iMac"
       section: "desktop"
-      variants: ["m4-10-10", "m4-8-8", "m3-8-10", "m1-8-8", "m1-8-7"]
+      variants:
+        [
+          "m6-12-12",
+          "m6-10-10",
+          "m4-10-10",
+          "m4-8-8",
+          "m3-8-10",
+          "m1-8-8",
+          "m1-8-7",
+          "n1",
+        ]
     - id: "mac-mini"
       name: "Mac mini"
       section: "desktop"
