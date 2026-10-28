@@ -14,7 +14,7 @@ categories:
   ]
 ---
 
-The [MacBook Pro 14″ PROLED XDR Display](/devices/mac/macbook-pro-14-proled-xdr/) and [16″ PROLED XDR Display](/devices/mac/macbook-pro-16-proled-xdr/) are up for pre-order today and arrive on 6 November. They don't replace the existing [MacBook Pro 14″](/devices/mac/macbook-pro-14/) and [16″](/devices/mac/macbook-pro-16/), which stay on sale, so Apple now sells two MacBook Pro lines in each size.
+The [MacBook Pro 14″ PROLED XDR](/devices/mac/macbook-pro-14-proled-xdr/) and [16″ PROLED XDR](/devices/mac/macbook-pro-16-proled-xdr/) are up for pre-order today and arrive on 6 November. They don't replace the existing [MacBook Pro 14″](/devices/mac/macbook-pro-14/) and [16″](/devices/mac/macbook-pro-16/), which stay on sale, so Apple now sells two MacBook Pro lines in each size.
 
 There is no new silicon. Both PROLED models use the [M5 Pro](/chips/m5/pro/) and [M5 Max](/chips/m5/max/) that [arrived in March](/news/march-2026-releases/), in the same three configurations as the existing 16-inch.
 
