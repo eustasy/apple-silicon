@@ -43,6 +43,14 @@
       name: "MacBook Neo"
       section: "laptop"
       variants: ["a18-pro-6-5"]
+    - id: "macbook-pro-16-proled-xdr"
+      name: "MacBook Pro 16″ PROLED XDR Display"
+      section: "laptop"
+      variants: ["m5-max-18-40", "m5-max-18-32", "m5-pro-18-20", "n1"]
+    - id: "macbook-pro-14-proled-xdr"
+      name: "MacBook Pro 14″ PROLED XDR Display"
+      section: "laptop"
+      variants: ["m5-max-18-40", "m5-max-18-32", "m5-pro-18-20", "n1"]
     - id: "macbook-pro-16"
       name: "MacBook Pro 16″"
       section: "laptop"
@@ -73,6 +81,7 @@
       section: "laptop"
       variants:
         [
+          "m6-12-12",
           "m5-max-18-40",
           "m5-max-18-32",
           "m5-pro-18-20",
