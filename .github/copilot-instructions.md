@@ -10,7 +10,7 @@ This project is an Eleventy (11ty) static site using Nunjucks templates and YAML
 - Output: `_site/`
 - Scripts: `npm run dev` (serve), `npm run build` (generate), `npm run format` (auto-format), `npm run lint` (check formatting)
 - Formatting: Prettier (config in `.prettierrc`, VS Code format-on-save via `.vscode/settings.json`)
-- CI: GitHub Actions in `.github/workflows/` — `build.yml` (Eleventy build) and `prettier.yml` (formatting check). Note `prettier.yml`'s job is _named_ `validate-yaml` but runs `npx prettier --check .` across the whole repo, so a failure there is usually JSON/JS/CSS, not YAML.
+- CI: GitHub Actions in `.github/workflows/` — `build.yml` (Eleventy build) and `prettier.yml` (formatting check: `npx prettier --check .` across the whole repo, so a failure can be in JSON, JS or CSS as well as YAML).
 - Deploy: Cloudflare Workers static assets. `wrangler.jsonc` must exist — without it `wrangler deploy` runs its first-run setup wizard, which auto-accepts in CI and re-runs the build a second time.
 
 ### Data contracts (authoritative)
@@ -124,7 +124,7 @@ For grouped device categories (iPhone, iPad, Watch, AirPods), devices nest under
 - **Device carousel**: `src/_includes/macros/device-carousel.njk`
   - Import: `{% from "macros/device-carousel.njk" import deviceCarousel %}`
   - Usage: `{% set devices = getDevicesForChips(chipIds) %} {{ deviceCarousel(devices) }}`
-  - Renders a responsive grid of device cards (it is no longer a scrolling carousel, despite the name) under the heading "All Devices, Including Discontinued". Discontinued devices are dimmed and badged in place, and the list stays in `devices.yml` order — do **not** partition it into current-then-discontinued, because deprecation is per-device and that would split one product family across two sections. Used on chip, rank, and generation pages.
+  - Renders a responsive grid of device cards (a grid, not a scrolling carousel, despite the name) under the heading "All Devices, Including Discontinued". Discontinued devices are dimmed and badged in place, and the list stays in `devices.yml` order — do **not** partition it into current-then-discontinued, because deprecation is per-device and that would split one product family across two sections. Used on chip, rank, and generation pages.
 - **Device grid**: `src/_includes/macros/device-grid.njk`
   - Import: `{% from "macros/device-grid.njk" import deviceGrid %}`
   - Usage: `{{ deviceGrid(devices, collections) }}` or `{{ deviceGrid(devices, collections, "/devices/mac/") }}`
